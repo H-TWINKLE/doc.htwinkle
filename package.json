@@ -1,0 +1,18 @@
+{
+  "name": "TWINKLE",
+  "version": "1.0.0",
+  "author": "reco_luan",
+  "scripts": {
+    "dev": "vuepress dev . --open --host \"localhost\"",
+    "build": "vuepress build ."
+  },
+  "devDependencies": {
+    "vuepress": "1.8.2",
+    "vuepress-theme-reco": "^1.6.6"
+  },
+  "description": "热爱可抵岁月漫长",
+  "dependencies": {
+    "vue-awesome": "^4.3.1",
+    "vuepress-plugin-comment": "^0.7.3"
+  }
+}
