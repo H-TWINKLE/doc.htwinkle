@@ -94,25 +94,14 @@ module.exports = {
         "startYear": "2019",
         "cyberSecurityRecord": "蜀ICP备18023054号-1",
         "cyberSecurityLink": "http://www.beian.miit.gov.cn/",
-        "showAccessNumber": true
+        "valineConfig": {
+            "appId": '1nPYYBBDSthaoM6ir07KS4uQ-gzGzoHsz',
+            "appKey": 'cFrHHkReCrincGrAaM5IHvD5',
+        }
     },
     "markdown": {
         "lineNumbers": true
     },
     "plugins": [
-        [
-            'vuepress-plugin-comment',
-            {
-                "choosen": 'valine',
-                // options选项中的所有参数，会传给Valine的配置
-                "options": {
-                    "el": '#valine-vuepress-comment',
-                    "appId": '1nPYYBBDSthaoM6ir07KS4uQ-gzGzoHsz',
-                    "appKey": 'cFrHHkReCrincGrAaM5IHvD5',
-                    "path": '<%- frontmatter.to.path %>',
-                    "visitor": true
-                }
-            }
-        ]
     ]
 }
