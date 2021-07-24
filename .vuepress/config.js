@@ -31,56 +31,66 @@ module.exports = {
         ]
     ],
     "theme": "reco",
-    "themeConfig": {
-        "nav": [
+    "markdown": {
+        "lineNumbers": true
+    },
+    "plugins": [
+        ['@vuepress/pwa', {
+            serviceWorker: true,
+            updatePopup: {
+                message: "发现新内容可用",
+                buttonText: "刷新"
+            }
+        }],
+        ["vuepress-plugin-nuggets-style-copy", {
+            copyText: "复制代码",
+            tip: {
+                content: "复制成功!"
+            }
+        }],
+        [
+            //动态标题 先安装在配置， npm install vuepress-plugin-dynamic-title --save
+            "dynamic-title",
             {
-                "text": "主页",
-                "link": "/",
-                "icon": "fa fa-home"
-            },
-            {
-                "text": "时间线",
-                "link": "/timeline/",
-                "icon": "fa fa-clock-o"
-            },
-            {
-                "text": "学习文档",
-                "icon": "fa fa-code",
-                "items": [
-                    {
-                        "text": "vuepress-reco",
-                        "link": "/docs/theme-reco/"
-                    }
-                ]
-            },
-            {
-                "text": "关于我",
-                "icon": "fa fa-grav",
-                "link": "/blogs/other/guide/"
-            },
-            {
-                "text": "github",
-                "icon": "fa fa-github",
-                "link": "https://github.com/h-twinkle"
+                showIcon: "/favicon.ico",
+                showText: " ✨ 连接成功 ",
+                hideIcon: "/failure.ico",
+                hideText: " 💢 连接失败 ",
+                recoverTime: 2000
             }
         ],
-        "sidebar": {
-            "/docs/theme-reco/": [
-                "",
-                "theme",
-                "plugin",
-                "api"
-            ]
-        },
+        [
+            //图片放大插件 先安装在配置， npm install @vuepress\plugin-medium-zoom --save
+            '@vuepress/medium-zoom', {
+            selector: '.page img',
+            delay: 1000,
+            options: {
+                margin: 24,
+                background: 'rgba(25,18,25,0.9)',
+                scrollOffset: 40
+            }
+        }
+        ],
+        [
+            //鼠标点击特效 先安装在配置， npm install vuepress-plugin-cursor-effects --save
+            "cursor-effects",
+            {
+                size: 3,                    // size of the particle, default: 2
+                shape: ['circle'],  // shape of the particle, default: 'star'
+                zIndex: 999999999           // z-index property of the canvas, default: 999999999
+            }
+        ],
+    ],
+    "themeConfig": {
         "type": "blog",
         "blogConfig": {
             "category": {
-                "location": 4,
+                "location": 3,
                 "icon": "fa fa-bars",
                 "text": "分类"
             },
             "tag": {
-                "location": 3,
+                "location": 2,
                 "icon": "fa fa-tags",
                 "text": "标签"
             }
@@ -97,11 +107,61 @@ module.exports = {
         "valineConfig": {
             "appId": '1nPYYBBDSthaoM6ir07KS4uQ-gzGzoHsz',
             "appKey": 'cFrHHkReCrincGrAaM5IHvD5',
+            "placeholder": "聊点什么..."
+        },
+        "nav": [
+            {
+                "text": "主页",
+                "link": "/",
+                "icon": "fa fa-home"
+            },
+            {
+                "text": "归档",
+                "link": "/timeline/",
+                "icon": "fa fa-map-signs"
+            },
+            {
+                "text": "生活",
+                "icon": "fa fa-envira",
+                "items": [
+                    {
+                        "text": "vuepress-reco",
+                        "link": "/docs/theme-reco/"
+                    }
+                ]
+            },
+            {
+                "text": "学习",
+                "icon": "fa fa-code",
+                "items": [
+                    {
+                        "text": "home",
+                        "link": "/blogs/home/"
+                    }
+                ]
+            },
+            {
+                "text": "关于我",
+                "icon": "fa fa-grav",
+                "link": "/about/guide/"
+            },
+            {
+                "text": "github",
+                "icon": "fa fa-github",
+                "link": "https://github.com/h-twinkle"
+            }
+        ],
+        "sidebar": {
+            "/docs/theme-reco/": [
+                "",
+                "theme",
+                "plugin",
+                "api"
+            ],
+            "/blogs/home": [
+                "",
+                "my"
+            ]
         }
-    },
-    "markdown": {
-        "lineNumbers": true
-    },
-    "plugins": [
-    ]
+    }
 }

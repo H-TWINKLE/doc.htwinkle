@@ -101,7 +101,7 @@ export default defineComponent({
           }),
           text: category.text || instance.$recoLocales.category,
           type: 'links',
-          icon: 'reco-category'
+          icon: 'fa fa-plus-square-o'
         })
       }
 
@@ -111,7 +111,7 @@ export default defineComponent({
           link: '/tag/',
           text: tag.text || instance.$recoLocales.tag,
           type: 'links',
-          icon: 'reco-tag'
+          icon: 'fa fa-hashtag'
         })
       }
 
