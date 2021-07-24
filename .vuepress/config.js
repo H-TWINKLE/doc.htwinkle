@@ -143,7 +143,7 @@ module.exports = {
             {
                 "text": "关于我",
                 "icon": "fa fa-grav",
-                "link": "/about/guide/"
+                "link": "/about/about/"
             },
             {
                 "text": "github",
