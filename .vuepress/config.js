@@ -159,8 +159,7 @@ module.exports = {
                 "api"
             ],
             "/blogs/home": [
-                "",
-                "my"
+                ""
             ]
         }
     }
