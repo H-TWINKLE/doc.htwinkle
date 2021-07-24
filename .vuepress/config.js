@@ -158,7 +158,7 @@ module.exports = {
                 "plugin",
                 "api"
             ],
-            "/blogs/home": [
+            "/blogs/home/": [
                 ""
             ]
         }
