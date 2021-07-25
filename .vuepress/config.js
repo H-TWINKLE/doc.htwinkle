@@ -12,7 +12,7 @@ module.exports = {
             "link",
             {
                 "rel": "icon",
-                "href": "/favicon.ico"
+                "href": "http://doc.file.htwinkle.cn/2021/07/25/8cc55192402359488043e679d57b07b9.ico"
             }
         ],
         [
