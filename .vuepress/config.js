@@ -76,7 +76,7 @@ module.exports = {
             "cursor-effects",
             {
                 size: 3,                    // size of the particle, default: 2
-                shape: ['circle'],  // shape of the particle, default: 'star'
+                shape: ['star'],  // shape of the particle, default: 'star' 'circle'
                 zIndex: 999999999           // z-index property of the canvas, default: 999999999
             }
         ],
@@ -135,8 +135,12 @@ module.exports = {
                 "icon": "fa fa-code",
                 "items": [
                     {
-                        "text": "home",
-                        "link": "/blogs/home/"
+                        "text": "centos服务器",
+                        "link": "/docs/centos/"
+                    },
+                    {
+                        "text": "美工设计",
+                        "link": "/docs/art/"
                     }
                 ]
             },
@@ -158,8 +162,22 @@ module.exports = {
                 "plugin",
                 "api"
             ],
-            "/blogs/home/": [
-                ""
+            "/docs/centos/": [
+                "",
+                "app",
+                "firewall",
+                "ftp",
+                "java",
+                "mysql",
+                "nginx",
+                "python",
+                "redis",
+                "swap"
+            ],
+            "/docs/art/": [
+                "",
+                "ae",
+                "pic"
             ]
         }
     }
