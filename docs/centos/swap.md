@@ -1,5 +1,5 @@
 ---
-title: centos虚拟内存技术 
+title: centos swap 虚拟内存技术 
 date: 2020-01-06
 tags:
 - centos

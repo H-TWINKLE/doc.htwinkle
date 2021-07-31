@@ -1,5 +1,5 @@
 ---
-title: centos桌面运行环境 
+title: centos 桌面运行环境 
 date: 2020-05-29
 tags:
 - centos

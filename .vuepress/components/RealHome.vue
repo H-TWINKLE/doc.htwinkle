@@ -57,7 +57,7 @@ export default defineComponent({
 .real-home {
   height: 450px;
   width: 100%;
-  margin-top: 10%;
+  margin-top: 15%;
 
   .box {
     margin: 10% 10% 0 10%;

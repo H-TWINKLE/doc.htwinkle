@@ -2,6 +2,7 @@
   "name": "TWINKLE",
   "version": "1.0.0",
   "author": "reco_luan",
+  "description": "热爱可抵岁月漫长",
   "scripts": {
     "dev": "vuepress dev . --open --host \"localhost\"",
     "build": "vuepress build ."
@@ -20,11 +21,10 @@
     "vuepress-plugin-nuggets-style-copy": "^1.0.3",
     "vuepress-theme-reco": "^1.6.6"
   },
-  "description": "热爱可抵岁月漫长",
   "dependencies": {
     "async-validator": "^3.5.2",
     "element-ui": "^2.15.3",
-    "hydrogen-js-sdk": "^2.2.4",
+    "hydrogen-js-sdk": "git+https://github.com/H-TWINKLE/hydrogen-js-sdk.git",
     "vue-awesome": "^4.3.1",
     "vue-property-decorator": "^9.1.2"
   }

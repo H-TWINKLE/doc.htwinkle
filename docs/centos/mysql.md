@@ -1,5 +1,5 @@
 ---
-title: mysql运行环境 
+title: mysql 运行环境 
 date: 2020-05-29
 tags:
 - centos

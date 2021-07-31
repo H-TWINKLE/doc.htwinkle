@@ -10,7 +10,7 @@ categories:
 - centos
 ---
 
-## notepad++
+## Notepad++
 
 1. 下载环境
 
@@ -30,7 +30,7 @@ sudo yum install -y qt5-qtbase-devel qt5-qttools-devel qt5-qtwebkit-devel qt5-qt
 sudo yum install notepadqq
 ```
 
-## navicat
+## Navicat
 
 1. 下载
 
