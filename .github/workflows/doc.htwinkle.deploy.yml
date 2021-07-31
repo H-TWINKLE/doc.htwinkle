@@ -1,0 +1,70 @@
+name: doc.htwinkle - deploy
+
+on:
+  push:
+    branches: [ master ]
+    
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2.3.0
+        with:
+          node-version: 14
+
+      - name: show dir
+        run: ls
+
+      - name: install enviroment
+        run: npm install
+        
+      - name: install webpack
+        run: npm install webpack@^4.5.0 -D  
+        
+      - name: build package
+        run: |
+          npm run build
+          ls
+          
+      - name: delete server dir
+        uses: matheusvanzan/sshpass-action@v2
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          port: ${{ secrets.SERVER_PORT }}
+          user: ${{ secrets.SERVER_USER }}
+          pass: ${{ secrets.SERVER_PASS }}
+          run: |
+              echo 'delete old dir'
+              rm -rf /root/app_web/doc.htwinkle/public
+              
+      - name: show server dir
+        uses: matheusvanzan/sshpass-action@v2
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          port: ${{ secrets.SERVER_PORT }}
+          user: ${{ secrets.SERVER_USER }}
+          pass: ${{ secrets.SERVER_PASS }}
+          run: |
+              echo 'change dir'
+              cd /root/app_web/doc.htwinkle
+              ls
+              
+      - name: upload static to server
+        uses: cross-the-world/scp-pipeline@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          port: ${{ secrets.SERVER_PORT }}
+          user: ${{ secrets.SERVER_USER }}
+          pass: ${{ secrets.SERVER_PASS }}
+          local: "./public*"
+          remote: "/root/app_web/doc.htwinkle/"
+              
+          
+          
+          
+          
+          
