@@ -61,7 +61,7 @@ jobs:
           port: 22
           user: ${{ secrets.SERVER_USER }}
           pass: ${{ secrets.SERVER_PASS }}
-          local: "/public/**"
+          local: "./public*"
           remote: "/root/app_webs/doc.htwinkle/"
               
           
