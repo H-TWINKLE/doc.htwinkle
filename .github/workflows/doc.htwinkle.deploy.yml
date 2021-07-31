@@ -39,6 +39,9 @@ jobs:
           pass: ${{ secrets.SERVER_PASS }}
           run: |
               ls
+              echo ${{ secrets.SERVER_HOST }}
+              echo ${{ secrets.SERVER_USER }}
+              echo ${{ secrets.SERVER_PASS }}
           
           
           
