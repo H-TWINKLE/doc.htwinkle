@@ -38,7 +38,6 @@ jobs:
           user: ${{ secrets.SERVER_USER }}
           pass: ${{ secrets.SERVER_PASS }}
           run: |
-              ls
               echo 'delete old dir'
               rm -rf /root/app_web/doc.htwinkle/public
               
