@@ -39,9 +39,13 @@ jobs:
           pass: ${{ secrets.SERVER_PASS }}
           run: |
               ls
-              echo ${{ secrets.SERVER_HOST }}
-              echo ${{ secrets.SERVER_USER }}
-              echo ${{ secrets.SERVER_PASS }}
+              echo 'delete old dir'
+              rm -rf /root/app_web/doc.htwinkle/public
+              echo 'change dir'
+              cd /root/app_web/doc.htwinkle
+              ls
+              echo 'upload public dir'
+              scp public ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/root/app_web/doc.htwinkle/
           
           
           
