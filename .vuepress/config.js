@@ -165,14 +165,14 @@ module.exports = {
             "/docs/centos/": [
                 "",
                 "app",
+                "swap",
                 "firewall",
                 "ftp",
                 "java",
                 "mysql",
                 "nginx",
                 "python",
-                "redis",
-                "swap"
+                "redis"
             ],
             "/docs/art/": [
                 "",

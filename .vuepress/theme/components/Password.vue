@@ -24,8 +24,8 @@
     <ModuleTransition delay="0.24">
       <div v-show="recoShowModule" class="footer">
         <span>
-          <reco-icon icon="reco-theme" />
-          <a target="blank" href="https://vuepress-theme-reco.recoluan.com">vuePress-theme-reco</a>
+          <i class="fa fa-child" />
+          <a target="blank" href="http://htwinkle.cn">htwinkle.cn</a>
         </span>
         <span>
           <reco-icon icon="reco-copyright" />
@@ -61,7 +61,7 @@ export default defineComponent({
     const year = new Date().getFullYear()
 
     const key = ref('')
-    const warningText = ref('Konck! Knock!')
+    const warningText = ref('解除锁定')
     const recoShowModule = computed(() => instance?.$parent?.recoShowModule)
     const { isPage } = toRefs(props)
 
@@ -84,11 +84,11 @@ export default defineComponent({
       sessionStorage.setItem(keyName, keyVal)
       const isKeyTrue = isPage.value ? isHasPageKey() : isHasKey()
       if (!isKeyTrue) {
-        warningText.value = 'Key Error'
+        warningText.value = '密码错误!'
         return
       }
 
-      warningText.value = 'Key Success'
+      warningText.value = '密码正确！'
 
       const width = document.getElementById('box').style.width
 
@@ -101,11 +101,11 @@ export default defineComponent({
     }
 
     const inputFocus = () => {
-      warningText.value = 'Input Your Key'
+      warningText.value = '请输入密码'
     }
 
     const inputBlur = () => {
-      warningText.value = 'Konck! Knock!'
+      warningText.value = '页面锁定中!'
     }
 
     return { warningText, year, key, recoShowModule, inter, inputFocus, inputBlur }
