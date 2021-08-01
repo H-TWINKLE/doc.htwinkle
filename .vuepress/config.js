@@ -34,6 +34,20 @@ module.exports = {
     "markdown": {
         "lineNumbers": true
     },
+    "devServer": {
+        "proxy": {
+            '/target': {
+                // 此处的写法，目的是为了 将 /api 替换成 https://www.baidu.com/
+                target: 'https://www.baidu.com/',
+                // 允许跨域
+                changeOrigin: true,
+                ws: true,
+                pathRewrite: {
+                    '^/api': ''
+                }
+            }
+        }
+    },
     "plugins": [
         ['@vuepress/pwa', {
             serviceWorker: true,
@@ -80,7 +94,40 @@ module.exports = {
                 zIndex: 999999999           // z-index property of the canvas, default: 999999999
             }
         ],
+        ["vuepress-plugin-typescript"]
     ],
+    // configureWebpack: {
+    //     resolve: {
+    //         extensions: ['.ts', '.vue'],
+    //     },
+    //     module: {
+    //         rules: [
+    //             {
+    //                 test: /\.ts$/,
+    //                 loader: "ts-loader",
+    //                 options: { appendTsSuffixTo: [/\.vue$/] }
+    //             },
+    //             {
+    //                 test: /.less$/,
+    //                 loader: "style-loader!css-loader!less-loader"
+    //             }
+    //         ],
+    //     },
+    // },
+    /* "chainWebpack": (config, isServer) => {
+         config.resolve.extensions.add('.ts')
+         config.module
+             .rule('ts')
+             .test(/\.ts$/)
+             .use('ts-loader')
+             .loader(require.resolve('ts-loader'))
+             .options({
+                 appendTsSuffixTo: [/\.vue$/, /\.md$/], compilerOptions: {
+                     declaration: false,
+                 }
+             })
+             .end()
+     },*/
     "themeConfig": {
         "type": "blog",
         "blogConfig": {
@@ -125,8 +172,8 @@ module.exports = {
                 "icon": "fa fa-envira",
                 "items": [
                     {
-                        "text": "vuepress-reco",
-                        "link": "/docs/theme-reco/"
+                        "text": "每日一文",
+                        "link": "/life/article/"
                     }
                 ]
             },
@@ -135,8 +182,12 @@ module.exports = {
                 "icon": "fa fa-code",
                 "items": [
                     {
-                        "text": "centos服务器",
+                        "text": "centos",
                         "link": "/docs/centos/"
+                    },
+                    {
+                        "text": "vuepress-reco",
+                        "link": "/about/guide/"
                     },
                     {
                         "text": "美工设计",
@@ -156,12 +207,6 @@ module.exports = {
             }
         ],
         "sidebar": {
-            "/docs/theme-reco/": [
-                "",
-                "theme",
-                "plugin",
-                "api"
-            ],
             "/docs/centos/": [
                 "",
                 "app",

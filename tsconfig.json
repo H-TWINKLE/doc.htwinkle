@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "importHelpers": true,
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "types": [
+      "vuepress-types"
+    ],
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ]
+  },
+  "include": [
+    ".vuepress/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
