@@ -61,7 +61,7 @@ export default defineComponent({
     const year = new Date().getFullYear()
 
     const key = ref('')
-    const warningText = ref('解除锁定')
+    const warningText = ref('页面已锁定')
     const recoShowModule = computed(() => instance?.$parent?.recoShowModule)
     const { isPage } = toRefs(props)
 

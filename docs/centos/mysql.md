@@ -1,11 +1,13 @@
 ---
 title: mysql 运行环境 
-date: 2020-05-29
+date: 2020-07-20
 tags:
 - centos
 - mysql
+- shell
 categories:
 - centos
+- linux
 ---
 
 ## 安装步骤

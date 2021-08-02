@@ -4,11 +4,13 @@ date: 2020-05-29
 tags:
 - centos
 - GNOME
+- shell
 categories:
 - centos
+- linux
 ---
 
-#### CENTOS是最小化安装的那默认都是不带X WINDOWS的，所以在安装这些桌面之前得先安装一下X WINDOWS，这个控制功能
+#### CENTOS是最小化安装的，默认都是不带X WINDOWS的，所以在安装这些桌面之前得先安装一下X WINDOWS，这个控制功能
 
 ```shell
 yum upgrade
@@ -25,6 +27,18 @@ yum -y groups install "GNOME Desktop"
 
 ```shell
 startx
+```
+
+## 重启GNOME桌面进程
+
+```shell
+startx
+```
+
+## 杀死GNOME桌面进程
+
+```shell
+killall -9 gnome-shell
 ```
 
 #### 如果需要在WINDOWS端远程桌面连接CENTOS的这些桌面系统，可以这样做

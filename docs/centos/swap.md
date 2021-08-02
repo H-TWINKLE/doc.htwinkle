@@ -4,8 +4,10 @@ date: 2020-01-06
 tags:
 - centos
 - swap
+- shell
 categories:
 - centos
+- linux
 ---
 
 ## 内存使用率超过X时开始使用交换分区

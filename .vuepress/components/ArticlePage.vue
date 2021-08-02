@@ -10,6 +10,9 @@
       <div class="date">{{ articlePageInfo.articleDate }}</div>
     </div>
     <div class="content" v-html="articlePageInfo.articleContent"></div>
+    <div class="refresh" @click="refresh()">
+      <i class="fa fa-circle-o-notch fa-spin"></i>&nbsp;&nbsp;再来一篇
+    </div>
   </div>
   <el-skeleton :rows="6" animated v-else/>
 </template>
@@ -52,6 +55,20 @@ export default class extends Vue {
       this.articlePageInfo.articleAuthor = req.data.list[0].articleAuthor
     }
   }
+
+  /**
+   * 刷新页面
+   * @private
+   */
+  private refresh() {
+    setTimeout(() => {
+      const back: any = document.getElementsByClassName('back-to-ceiling')
+      if (back && back[0]) {
+        back[0].click()
+      }
+    }, 200)
+    this.getArticleInfo()
+  }
 }
 </script>
 
@@ -83,6 +100,12 @@ export default class extends Vue {
     p {
       text-indent: 2rem;
     }
+  }
+
+  .refresh {
+    text-align: right;
+    color: #3eaf7c;
+    cursor: pointer;
   }
 }
 </style>

@@ -1,11 +1,13 @@
 ---
 title: ftp 运行环境 
-date: 2020-05-29
+date: 2029-04-29
 tags:
 - centos
 - ftp
+- shell
 categories:
 - centos
+- linux
 ---
 
 ### 安装指导

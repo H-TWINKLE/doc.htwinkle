@@ -5,7 +5,8 @@
   "description": "热爱可抵岁月漫长",
   "scripts": {
     "dev": "vuepress dev . --open --host \"localhost\"",
-    "build": "vuepress build ."
+    "build": "vuepress build .",
+    "postinstall": "patch-package"
   },
   "devDependencies": {
     "@vuepress-reco/vuepress-plugin-comments": "^1.6.0",
@@ -13,6 +14,7 @@
     "@vuepress/plugin-pwa": "^1.8.2",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
+    "patch-package": "^6.4.7",
     "typescript": "^3.9.3",
     "vuepress": "1.8.2",
     "vuepress-plugin-cursor-effects": "^1.0.2",
@@ -25,6 +27,7 @@
   "dependencies": {
     "async-validator": "^3.5.2",
     "axios": "^0.21.1",
+    "dayjs": "^1.10.6",
     "element-ui": "^2.15.3",
     "hydrogen-js-sdk": "git+https://github.com/H-TWINKLE/hydrogen-js-sdk.git",
     "vue-awesome": "^4.3.1",

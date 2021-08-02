@@ -4,8 +4,10 @@ date: 2020-05-29
 tags:
 - centos
 - nginx
+- shell
 categories:
 - centos
+- linux
 ---
 
 ####       

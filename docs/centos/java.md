@@ -4,8 +4,10 @@ date: 2020-05-29
 tags:
 - centos
 - java
+- shell
 categories:
 - centos
+- linux
 ---
 
 ## 查询CentOS自带的Java相关组件

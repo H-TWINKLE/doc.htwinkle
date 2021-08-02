@@ -154,7 +154,8 @@ module.exports = {
         "valineConfig": {
             "appId": '1nPYYBBDSthaoM6ir07KS4uQ-gzGzoHsz',
             "appKey": 'cFrHHkReCrincGrAaM5IHvD5',
-            "placeholder": "聊点什么..."
+            "placeholder": "聊点什么...",
+            "avatar": "wavatar"
         },
         "nav": [
             {
@@ -174,6 +175,10 @@ module.exports = {
                     {
                         "text": "每日一文",
                         "link": "/life/article/"
+                    },
+                    {
+                        "text": "我们",
+                        "link": "/life/we/"
                     }
                 ]
             },
@@ -186,13 +191,33 @@ module.exports = {
                         "link": "/docs/centos/"
                     },
                     {
+                        "text": "nginx",
+                        "link": "/docs/nginx/"
+                    },
+                    {
+                        "text": "python",
+                        "link": "/docs/python/"
+                    },
+                    {
+                        "text": "docker",
+                        "link": "/docs/docker/"
+                    },
+                    {
+                        "text": "windows",
+                        "link": "/docs/windows/"
+                    },
+                    {
                         "text": "vuepress-reco",
-                        "link": "/about/guide/"
+                        "link": "/docs/vuepress-reco/"
                     },
                     {
                         "text": "美工设计",
                         "link": "/docs/art/"
-                    }
+                    },
+                    {
+                        "text": "实用工具&网站",
+                        "link": "/docs/tool/"
+                    },
                 ]
             },
             {
@@ -212,6 +237,7 @@ module.exports = {
                 "app",
                 "swap",
                 "firewall",
+                "shell",
                 "ftp",
                 "java",
                 "mysql",

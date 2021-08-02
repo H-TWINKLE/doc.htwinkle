@@ -1,11 +1,13 @@
 ---
 title: centos 防火墙 
-date: 2020-05-29
+date: 2019-03-29
 tags:
 - centos
 - firewall
+- shell
 categories:
 - centos
+- linux
 ---
 
 1. 通过systemctl start firewalld开启防火墙，没有任何提示即开启成功

@@ -4,8 +4,10 @@ date: 2020-05-29
 tags:
 - centos
 - python3
+- shell
 categories:
 - centos
+- linux
 ---
 
 #### 在安装Python之前，需要先安装一些后面遇到的依赖问题（如果有依赖问题，按照提示安装）
