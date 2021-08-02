@@ -1,6 +1,6 @@
 ---
 title: ftp 运行环境 
-date: 2029-04-29
+date: 2019-11-29
 tags:
 - centos
 - ftp
