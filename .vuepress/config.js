@@ -207,6 +207,10 @@ module.exports = {
                         "link": "/docs/windows/"
                     },
                     {
+                        "text": "git",
+                        "link": "/docs/git/"
+                    },
+                    {
                         "text": "vuepress-reco",
                         "link": "/docs/vuepress-reco/"
                     },
