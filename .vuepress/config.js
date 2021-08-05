@@ -177,6 +177,10 @@ module.exports = {
                         "link": "/life/article/"
                     },
                     {
+                        "text": "每日一曲",
+                        "link": "/life/music/"
+                    },
+                    {
                         "text": "我们",
                         "link": "/life/we/"
                     }
@@ -252,7 +256,8 @@ module.exports = {
             "/docs/art/": [
                 "",
                 "ae",
-                "pic"
+                "pic",
+                "api"
             ]
         }
     }
