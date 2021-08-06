@@ -1,6 +1,6 @@
 ---
 title: 每日一文
-date: 1970-01-01
+date: now()
 tags:
 - 文章
 - 生活

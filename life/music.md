@@ -1,6 +1,6 @@
 ---
 title: 每日一曲
-date: 1970-01-01
+date: now()
 tags:
 - 音乐
 - 生活

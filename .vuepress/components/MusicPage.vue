@@ -1,24 +1,21 @@
 <template>
   <div class="music-page">
-    <Aplayer ref="aplRefs" :autoplay="true" :key="aplayerInfo.src" :music="aplayerInfo"></Aplayer>
-    <div class="refresh" @click="getMusicInfo()">
-      <i class="fa fa-circle-o-notch fa-spin"></i>&nbsp;&nbsp;再来一首
-    </div>
+    <component ref="aplRefs" :autoplay="true" :key="aplayerInfo.src" :music="aplayerInfo"
+               v-if="dynamicComponent" :is="dynamicComponent"></component>
+    <BaseRefresh :refreshText="'再来一首'" @refreshMethod="getMusicInfo"></BaseRefresh>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import Aplayer from 'vue-aplayer'
 import httpKit from '../base/http/httpKit'
 
 @Component({
-  name: 'MusicPage',
-  components: {
-    Aplayer
-  }
+  name: 'MusicPage'
 })
 export default class extends Vue {
+
+  private dynamicComponent = ''
 
   private aplayerInfo: any = {
     title: 'secret base~君がくれたもの~',
@@ -28,9 +25,24 @@ export default class extends Vue {
   }
 
   mounted() {
+    this.importComponent()
     this.getMusicInfo()
   }
 
+  /**
+   * 动态加载组件
+   * @private
+   */
+  private importComponent() {
+    import('vue-aplayer').then(module => {
+      this.dynamicComponent = module.default
+    })
+  }
+
+  /**
+   * 获取音乐信息
+   * @private
+   */
   private async getMusicInfo() {
     const resp = await httpKit.get(this.getMusicUrl())
     if (resp && resp.data && resp.data.code === 1) {
@@ -38,7 +50,9 @@ export default class extends Vue {
       this.aplayerInfo.src = resp.data.data.url
       this.aplayerInfo.artist = resp.data.data.artistsname
       this.aplayerInfo.pic = resp.data.data.picurl
-      this.play()
+      this.$nextTick(() => {
+        this.play()
+      })
     }
   }
 
@@ -58,11 +72,5 @@ export default class extends Vue {
 
 <style lang="less" scoped>
 .music-page {
-  .refresh {
-    margin-top: 30px;
-    text-align: right;
-    color: #3eaf7c;
-    cursor: pointer;
-  }
 }
 </style>

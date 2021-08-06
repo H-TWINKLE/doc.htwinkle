@@ -10,9 +10,7 @@
       <div class="date">{{ articlePageInfo.articleDate }}</div>
     </div>
     <div class="content" v-html="articlePageInfo.articleContent"></div>
-    <div class="refresh" @click="refresh()">
-      <i class="fa fa-circle-o-notch fa-spin"></i>&nbsp;&nbsp;再来一篇
-    </div>
+    <BaseRefresh :refreshText="'再来一篇'" @refreshMethod="refresh"></BaseRefresh>
   </div>
   <el-skeleton :rows="6" animated v-else/>
 </template>
@@ -100,12 +98,6 @@ export default class extends Vue {
     p {
       text-indent: 2rem;
     }
-  }
-
-  .refresh {
-    text-align: right;
-    color: #3eaf7c;
-    cursor: pointer;
   }
 }
 </style>

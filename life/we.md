@@ -1,6 +1,6 @@
 ---
 title: 我们
-date: 2020-05-29
+date: now()
 tags:
 - 我们
 - 生活

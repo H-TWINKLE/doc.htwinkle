@@ -37,6 +37,7 @@
 <script>
 import { defineComponent, getCurrentInstance } from 'vue-demi'
 import { RecoIcon } from '@vuepress-reco/core/lib/components'
+import { getNowDate } from '../../base/utils/utilsKit'
 
 export default defineComponent({
   components: { RecoIcon },
@@ -73,7 +74,7 @@ export default defineComponent({
     }
 
     const formatDateValue = (value) => {
-      return new Intl.DateTimeFormat(instance.$lang).format(new Date(value))
+      return new Intl.DateTimeFormat(instance.$lang).format(new Date(value === 'now()' ? getNowDate() : value))
     }
 
     return { numStyle, goTags, formatDateValue }

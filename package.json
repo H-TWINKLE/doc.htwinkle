@@ -1,7 +1,7 @@
 {
-  "name": "TWINKLE",
+  "name": "doc.htwinkle",
   "version": "1.0.0",
-  "author": "reco_luan",
+  "author": "TWINKLE",
   "description": "热爱可抵岁月漫长",
   "scripts": {
     "dev": "vuepress dev . --open --host \"localhost\"",
