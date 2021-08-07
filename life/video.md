@@ -1,5 +1,5 @@
 ---
-title: 每日视频
+title: 每日一视
 date: now()
 tags:
 - 视频
@@ -10,4 +10,6 @@ categories:
 - 生活
 ---
 
-<VideoPage/>
+<ClientOnly>
+    <VideoPage/>
+</ClientOnly>

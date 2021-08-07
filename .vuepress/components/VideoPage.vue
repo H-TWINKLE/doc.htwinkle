@@ -30,7 +30,7 @@ export default class extends Vue {
   /**
    * 视频播放的配置
    * */
-  private playerOptions = {
+  private playerOptions: any = {
     playbackRates: [0.5, 1.0, 1.5, 2.0],
     autoplay: true,
     muted: false,

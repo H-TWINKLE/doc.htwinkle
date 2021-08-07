@@ -185,7 +185,7 @@ module.exports = {
                         "link": "/life/picture/"
                     },
                     {
-                        "text": "每日一V",
+                        "text": "每日一视",
                         "link": "/life/video/"
                     },
                     {
