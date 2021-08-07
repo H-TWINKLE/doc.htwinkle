@@ -105,6 +105,8 @@ export default class extends Vue {
 .picture-page {
 
   .picture-box {
+    text-align: center;
+
     .item {
       margin-bottom: 5px;
       margin-right: 5px;
