@@ -181,6 +181,10 @@ module.exports = {
                         "link": "/life/music/"
                     },
                     {
+                        "text": "每日一图",
+                        "link": "/life/picture/"
+                    },
+                    {
                         "text": "我们",
                         "link": "/life/we/"
                     }
