@@ -32,6 +32,7 @@
     "hydrogen-js-sdk": "git+https://github.com/H-TWINKLE/hydrogen-js-sdk.git",
     "vue-aplayer": "^1.6.1",
     "vue-awesome": "^4.3.1",
+    "vue-video-player": "^5.0.2",
     "vuex": "^3.6.2",
     "vuex-module-decorators": "^1.0.1"
   }

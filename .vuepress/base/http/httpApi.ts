@@ -3,3 +3,6 @@ export const homeApi = 'http://htwinkle.cn'
 export const articleApi = homeApi + '/article/api'
 // 精选照片
 export const pictureApi = 'https://api.pexels.com/v1/curated'
+// 每日照片
+// https://api.xygeng.cn/Bing/url/
+export const dayPictureApi = 'https://api.no0a.cn/api/bing/0'

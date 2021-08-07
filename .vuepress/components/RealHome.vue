@@ -1,20 +1,21 @@
 <template>
   <Common :sidebarItems="sidebarItems" :showModule="recoShowModule">
     <div class="real-home">
-      <div class="box">
-        <el-carousel :interval="40000" type="card">
-          <el-carousel-item v-for="item in imageList" :key="item">
-            <img width="100%" height="100%" class="img-info" :src="item">
-          </el-carousel-item>
-        </el-carousel>
+      <div class="img-box" v-if="homeDayPic.url">
+        <img width="100%" :height="homeDayPic.height" class="img-info" :src="homeDayPic.url">
+        <div class="text"
+             :class="{ active: homeDayPic.copyright }"
+             :style="{ marginTop: homeDayPic.height/2 +'px' }">{{ homeDayPic.copyright }}
+        </div>
       </div>
+      <el-skeleton :rows="25" animated v-else/>
     </div>
     <Footer class="footer"/>
   </Common>
 </template>
 
 <script>
-import { computed, defineComponent, getCurrentInstance, ref } from 'vue-demi'
+import { computed, defineComponent, getCurrentInstance, reactive, onMounted } from 'vue-demi'
 import Footer from '@theme/components/Footer'
 import Common from '@theme/components/Common'
 import Home from '@theme/components/Home'
@@ -22,18 +23,29 @@ import HomeBlog from '@theme/components/HomeBlog'
 import Page from '@theme/components/Page'
 import { resolveSidebarItems } from '@theme/helpers/utils'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
+import httpKit from '../base/http/httpKit'
+import { dayPictureApi } from '../base/http/httpApi'
 
 export default defineComponent({
   mixins: [moduleTransitonMixin],
   components: { HomeBlog, Home, Page, Common, Footer },
   setup (props, ctx) {
     const instance = getCurrentInstance().proxy
-    const imageList = computed(() => {
-      return ['http://doc.file.htwinkle.cn/2021/07/25/61c3b44c40599c0080814ba26a3a429b.jpg',
-        'http://doc.file.htwinkle.cn/2021/07/25/c9234380408256ba8012da01503e79d3.jpg',
-        'http://doc.file.htwinkle.cn/2021/07/25/d930252540dbb61a808d533525d6562a.jpg',
-        'http://doc.file.htwinkle.cn/2021/07/25/87a4250c40c3eb5a80a628fa604e0481.jpg']
+    const homeDayPic = reactive({
+      url: '',
+      copyright: '',
+      height: document.documentElement.clientHeight || document.body.clientHeight || 768
     })
+
+    const getDayPicture = async () => {
+      const resp = await httpKit.get(dayPictureApi)
+      if (resp && resp.status === 200 && resp.data && resp.data.status === 1) {
+        homeDayPic.url = resp.data.bing.url
+        setTimeout(() => {
+          homeDayPic.copyright = resp.data.bing.copyright
+        }, 1000)
+      }
+    }
 
     const sidebarItems = computed(() => {
       if (instance.$page) {
@@ -48,7 +60,11 @@ export default defineComponent({
       }
     })
 
-    return { sidebarItems, imageList }
+    onMounted(() => {
+      getDayPicture()
+    })
+
+    return { sidebarItems, homeDayPic }
   }
 })
 </script>
@@ -56,27 +72,28 @@ export default defineComponent({
 <style src="../theme/styles/theme.styl" lang="stylus"></style>
 <style lang="less">
 .real-home {
-  height: 450px;
   width: 100%;
-  margin-top: 10%;
 
-  .box {
-    margin: 10% 10% 0 10%;
+  .img-box {
+    opacity: .95;
+    transition: all 1s ease 0s;
+    -webkit-animation: all 1s ease 0s;
 
-    .el-carousel__container {
+    .text {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      text-align: center;
+      z-index: 9999;
+      font-weight: bold;
+      opacity: 0;
+      background: rgba(24, 24, 24, 0.33);
+      color: #3eaf7c;
     }
 
-    .el-carousel {
-      .el-carousel__indicator.is-active button {
-        background-color: #3eaf7c !important;
-      }
-
-      .el-carousel__indicators {
-        margin-top: 5%;
-      }
-    }
-
-    .img-info {
+    .active {
+      opacity: 1;
+      transition: all 2s ease;
     }
   }
 }
