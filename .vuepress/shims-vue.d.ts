@@ -5,3 +5,4 @@ declare module '*.vue' {
 }
 
 declare module 'vue-aplayer'
+declare module 'vue-video-player'

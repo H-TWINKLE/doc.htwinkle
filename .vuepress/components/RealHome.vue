@@ -15,10 +15,11 @@
 </template>
 
 <script>
-import { defineComponent, getCurrentInstance, reactive, onMounted } from 'vue-demi'
+import { computed, defineComponent, getCurrentInstance, reactive, onMounted } from 'vue-demi'
 import Footer from '@theme/components/Footer'
 import Common from '@theme/components/Common'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
+import { resolveSidebarItems } from '@theme/helpers/utils'
 import httpKit from '../base/http/httpKit'
 import { dayPictureApi } from '../base/http/httpApi'
 
@@ -44,15 +45,28 @@ export default defineComponent({
     }
 
     const getHeight = () => {
-      homeDayPic.height =  document.documentElement.clientHeight || document.body.clientHeight || 768
+      homeDayPic.height = document.documentElement.clientHeight || document.body.clientHeight || 768
     }
+
+    const sidebarItems = computed(() => {
+      if (instance.$page) {
+        return resolveSidebarItems(
+            instance.$page,
+            instance.$page.regularPath,
+            instance.$site,
+            instance.$localePath
+        )
+      } else {
+        return []
+      }
+    })
 
     onMounted(() => {
       getHeight()
       getDayPicture()
     })
 
-    return { homeDayPic }
+    return { sidebarItems, homeDayPic }
   }
 })
 </script>

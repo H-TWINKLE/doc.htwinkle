@@ -1,92 +1,89 @@
 <template>
-  <div class="picture-page">
-    <div v-if="pictureList.length>0">
-      <div class="picture-box">
-        <el-image class="item"
-                  v-for="(item,index) in pictureList"
-                  :key="index"
-                  :src="item.src.tiny"
-                  :fit="'fit'"
-                  :preview-src-list="getPreviewList(item)">
-
-        </el-image>
-      </div>
-      <div class="paginate-box">
-        <el-pagination
-            background
-            small
-            layout="sizes, prev, pager, next"
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :total="paginateInfo.total"
-            :current-page.sync="paginateInfo.page"
-            :page-sizes="paginateInfo.page_size"
-            :page-size='paginateInfo.per_page'>
-        </el-pagination>
-      </div>
+  <div class="video-page">
+    <div v-if="playerOptions.poster">
+      <videoPlayer :index="videoId" :options="playerOptions"></videoPlayer>
+      <BaseRefresh :refreshText="'再来一个'" @refreshMethod="refreshPage"/>
     </div>
-    <el-skeleton :rows="25" animated v-else/>
+    <el-skeleton :rows="10" animated v-else/>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import httpKit from '../base/http/httpKit'
-import { pictureApi } from '../base/http/httpApi'
+import { videoApi } from '../base/http/httpApi'
+import 'video.js/dist/video-js.css'
+import 'vue-video-player/src/custom-theme.css'
+import { videoPlayer } from 'vue-video-player'
 
 @Component({
-  name: 'PicturePage'
+  name: 'VideoPage',
+  components: {
+    videoPlayer
+  }
 })
 export default class extends Vue {
 
-  private pictureList: any[] = []
+  // 起风了id
+  private videoId: string = '10911467'
 
-  private paginateInfo = {
-    page: 1,
-    per_page: 15,
-    page_size: [15, 30, 45, 60, 75],
-    total: 9999
-  }
-
-  mounted() {
-    this.getPictureList()
-  }
-
-  private handleSizeChange(val) {
-    // console.log(`每页 ${val} 条`);
-    this.paginateInfo.per_page = val
-    this.refreshPage()
-  }
-
-  private handleCurrentChange(val) {
-    // console.log(`当前页: ${val}`);
-    this.paginateInfo.page = val
-    this.refreshPage()
-  }
-
-  private refreshPage() {
-    this.upTop()
-    this.getPictureList()
-  }
-
-  private async getPictureList() {
-    this.pictureList = []
-    const resp = await httpKit.get(pictureApi,
-        { page: this.paginateInfo.page, per_page: this.paginateInfo.per_page },
-        {
-          headers: {
-            Authorization: '563492ad6f9170000100000164b1d306f56c408aa430a0d7a877a85f'
-          }
-        })
-    if (resp && resp.status === 200 && resp.data) {
-      this.paginateInfo.page = resp.data.page ? resp.data.page : this.paginateInfo.page
-      this.paginateInfo.per_page = resp.data.per_page ? resp.data.per_page : this.paginateInfo.per_page
-      this.pictureList = resp.data.photos
+  /**
+   * 视频播放的配置
+   * */
+  private playerOptions = {
+    playbackRates: [0.5, 1.0, 1.5, 2.0],
+    autoplay: true,
+    muted: false,
+    loop: false,
+    preload: 'auto',
+    language: 'zh-CN',
+    aspectRatio: '16:9',
+    fluid: true,
+    sources: [],
+    poster: "",
+    notSupportedMessage: '此视频暂无法播放，请稍后再试',
+    controlBar: {
+      timeDivider: true,
+      durationDisplay: true,
+      remainingTimeDisplay: false,
+      fullscreenToggle: true
     }
   }
 
-  private getPreviewList(item: any) {
-    return [item.src.landscape, item.src.portrait]
+  mounted() {
+    this.getVideoInfo()
+  }
+
+  /**
+   * 刷新页面
+   * @private
+   */
+  private refreshPage() {
+    this.upTop()
+    this.clearPage()
+    this.getVideoInfo()
+  }
+
+  private clearPage() {
+    this.playerOptions.poster = ''
+    this.playerOptions.sources = []
+  }
+
+  private async getVideoInfo() {
+    const resp = await httpKit.get(videoApi, {
+      type: 'mv',
+      id: this.videoId
+    })
+    if (resp && resp.status === 200 && resp.data.data && resp.data.data.brs) {
+      for (const br in resp.data.data.brs) {
+        const item: any | never = {
+          type: 'video/mp4',
+          src: String(resp.data.data.brs[br])
+        }
+        this.playerOptions.sources.unshift(item)
+      }
+      this.playerOptions.poster = resp.data.data.cover
+    }
   }
 
   private upTop() {
@@ -97,23 +94,10 @@ export default class extends Vue {
       }
     }, 200)
   }
-
 }
 </script>
 
 <style lang="less" scoped>
-.picture-page {
-
-  .picture-box {
-    .item {
-      margin-bottom: 5px;
-      margin-right: 5px;
-    }
-  }
-
-  .paginate-box {
-    margin-top: 20px;
-    text-align: right;
-  }
+.video-page {
 }
 </style>
