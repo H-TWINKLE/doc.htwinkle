@@ -10,6 +10,4 @@ categories:
 - 生活
 ---
 
-<ClientOnly>
-    <VideoPage/>
-</ClientOnly>
+<VideoPage/>

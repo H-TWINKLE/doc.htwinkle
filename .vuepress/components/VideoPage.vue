@@ -1,7 +1,9 @@
 <template>
   <div class="video-page">
     <div v-if="playerOptions.poster">
-      <videoPlayer :index="videoId" :options="playerOptions"></videoPlayer>
+      <component
+          v-if="dynamicComponent" :is="dynamicComponent"
+          :index="videoId" :options="playerOptions"></component>
       <BaseRefresh :refreshText="'再来一个'" @refreshMethod="refreshPage"/>
     </div>
     <el-skeleton :rows="10" animated v-else/>
@@ -14,15 +16,13 @@ import httpKit from '../base/http/httpKit'
 import { videoApi } from '../base/http/httpApi'
 import 'video.js/dist/video-js.css'
 import 'vue-video-player/src/custom-theme.css'
-import { videoPlayer } from 'vue-video-player'
 
 @Component({
-  name: 'VideoPage',
-  components: {
-    videoPlayer
-  }
+  name: 'VideoPage'
 })
 export default class extends Vue {
+
+  private dynamicComponent = null
 
   // 起风了id
   private videoId: string = '10911467'
@@ -51,7 +51,18 @@ export default class extends Vue {
   }
 
   mounted() {
+    this.importComponent()
     this.getVideoInfo()
+  }
+
+  /**
+   * 动态加载组件
+   * @private
+   */
+  private importComponent() {
+    import('vue-video-player').then(module => {
+      this.dynamicComponent = module.default.videoPlayer
+    })
   }
 
   /**
