@@ -15,26 +15,22 @@
 </template>
 
 <script>
-import { computed, defineComponent, getCurrentInstance, reactive, onMounted } from 'vue-demi'
+import { defineComponent, getCurrentInstance, reactive, onMounted } from 'vue-demi'
 import Footer from '@theme/components/Footer'
 import Common from '@theme/components/Common'
-import Home from '@theme/components/Home'
-import HomeBlog from '@theme/components/HomeBlog'
-import Page from '@theme/components/Page'
-import { resolveSidebarItems } from '@theme/helpers/utils'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 import httpKit from '../base/http/httpKit'
 import { dayPictureApi } from '../base/http/httpApi'
 
 export default defineComponent({
   mixins: [moduleTransitonMixin],
-  components: { HomeBlog, Home, Page, Common, Footer },
+  components: { Common, Footer },
   setup (props, ctx) {
     const instance = getCurrentInstance().proxy
     const homeDayPic = reactive({
       url: '',
       copyright: '',
-      height: document.documentElement.clientHeight || document.body.clientHeight || 768
+      height: 768
     })
 
     const getDayPicture = async () => {
@@ -47,24 +43,16 @@ export default defineComponent({
       }
     }
 
-    const sidebarItems = computed(() => {
-      if (instance.$page) {
-        return resolveSidebarItems(
-            instance.$page,
-            instance.$page.regularPath,
-            instance.$site,
-            instance.$localePath
-        )
-      } else {
-        return []
-      }
-    })
+    const getHeight = () => {
+      homeDayPic.height =  document.documentElement.clientHeight || document.body.clientHeight || 768
+    }
 
     onMounted(() => {
+      getHeight()
       getDayPicture()
     })
 
-    return { sidebarItems, homeDayPic }
+    return { homeDayPic }
   }
 })
 </script>
