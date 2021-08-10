@@ -83,7 +83,7 @@ export default class extends Vue {
     if (list.length > 0) {
       const index = Math.floor((Math.random() * list.length))
       console.log(index, list[index])
-      this.videoId = list[index].id
+      this.videoId = list[index].mv
     }
     await this.getVideoInfo()
   }
