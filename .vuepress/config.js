@@ -207,6 +207,10 @@ module.exports = {
                         "link": "/docs/nginx/"
                     },
                     {
+                        "text": "php",
+                        "link": "/docs/php/"
+                    },
+                    {
                         "text": "python",
                         "link": "/docs/python/"
                     },
