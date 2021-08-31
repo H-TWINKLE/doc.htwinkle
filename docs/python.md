@@ -61,5 +61,129 @@ pyinstaller -i ico路径 xxxxx.py –icon=<FILE.EXE,N> 将file.exe的第n个图�
 
 ```
 
+## 通用的logger日志处理器
+
+```shell
+import logging
+import os
+import time
+from logging import Handler, FileHandler, StreamHandler
+
+
+class PathFileHandler(FileHandler):
+    def __init__(self, path, filename, mode='a', encoding='utf-8', delay=False):
+        if not os.path.exists(path):
+            os.mkdir(path)
+        self.baseFilename = os.path.join(path, filename)
+        self.mode = mode
+        self.encoding = encoding
+        self.delay = delay
+        if delay:
+            Handler.__init__(self)
+            self.stream = None
+        else:
+            StreamHandler.__init__(self, self._open())
+
+
+class LoggerKit(object):
+    # 日志级别关系映射
+    level_relations = {
+        'debug': logging.DEBUG, 'info': logging.INFO, 'warning': logging.WARNING,
+        'error': logging.ERROR, 'critical': logging.CRITICAL
+    }
+
+    def __init__(self, class_name=__name__, level='info', log_dir='log',
+                 fmt='%(asctime)s.%(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s'):
+        self.logger = logging.getLogger(class_name)
+        # 不传递给上级logger
+        self.logger.propagate = 0
+        self.logger.setLevel(self.level_relations.get(level))  # 设置日志级别
+        self.directory = os.path.join(os.getcwd(), log_dir)
+        format_str = logging.Formatter(fmt)  # 设置日志格式
+        stream_handler = logging.StreamHandler()  # 往屏幕上输出
+        stream_handler.setFormatter(format_str)
+        file_handler = PathFileHandler(path=self.directory,
+                                       filename='{date}.log'.format(
+                                           date=time.strftime("deis_platform_api_%Y_%m_%d", time.localtime())),
+                                       mode='a')
+        file_handler.setFormatter(format_str)
+        self.logger.addHandler(stream_handler)
+        self.logger.addHandler(file_handler)
+
+    def get_logger(self):
+        return self.logger
+
+
+LOGGER = LoggerKit()
+
+if __name__ == "__main__":
+    txt = "将信息打印到日志文件中......"
+    log = LoggerKit(level='debug')
+    log.logger.info(4)
+    log.logger.info(5)
+    log.logger.info(txt)
+
+```
+
+## 通用的获取配置
+
+```shell
+import configparser
+
+from ToolKit.kit.LoggerKit import LOGGER
+
+
+class OptionKit:
+    def __init__(self, *name):
+        """获取基础配置"""
+        self.default_file_name = 'config.ini'
+        self.configKey = 'default'
+        self.file_name = self.init_file_name(name)
+        self.config = configparser.RawConfigParser()
+        self.__init_read_file()
+
+    def __init_read_file(self):
+        self.config.read(self.file_name, encoding='utf-8-sig')
+        # print(self.config.sections())
+
+    def init_file_name(self, *name):
+        if name is None or len(name) <= 1:
+            return self.default_file_name
+        else:
+            return name[0]
+
+    def get_conf(self, key, default=None):
+        """获取某一个配置文件"""
+        try:
+            value = self.config.get(self.configKey, key)
+            LOGGER.get_logger().info('get conf {0} value:{1}'.format(key, value))
+            return value
+        except configparser.NoSectionError as e:
+            LOGGER.get_logger().info('get conf error: {0}  why: {1}'.format(key, e))
+            return default
+        except KeyError as e:
+            LOGGER.get_logger().info('get conf error: {0}  why: {1}'.format(key, e))
+            return default
+        except configparser.NoOptionError as e:
+            LOGGER.get_logger().info('get conf error: {0}  why: {1}'.format(key, e))
+            return default
+
+    def write_conf(self, key, value):
+        """写入某一个配置文件"""
+        self.config.set(self.configKey, key, value)
+
+    def get_all_config_key(self):
+        return self.config.items(self.configKey)
+
+    def quote_config(self, value: str):
+        """替换字符串中配置key的值到配置的值中"""
+        items = self.get_all_config_key()
+        for item in items:
+            if len(value.split('%')) > 1 and item[0] in value:
+                return value.replace('%{0}%'.format(item[0]), item[1])
+        return value
+
+```
+
 
 

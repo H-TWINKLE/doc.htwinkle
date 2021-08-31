@@ -15,3 +15,4 @@ categories:
 1. [UomgAPI](https://api.uomg.com/ '稳定、快速、免费的 API 接口服务')
 2. [alapi](https://alapi.cn/)
 3. [pexels](https://www.pexels.com/zh-cn/api/)
+4. [infinity-api](https://infinity-api.infinitynewtab.com/random-wallpaper '随机获取一张精选的图片')
