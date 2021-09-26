@@ -3,10 +3,12 @@ export const homeApi = 'http://htwinkle.cn'
 export const articleApi = homeApi + '/article/api'
 // 精选照片
 export const pictureApi = 'https://api.pexels.com/v1/curated'
-// 每日照片
+// 跨域代理地址
 // https://api.xygeng.cn/Bing/url/
-export const dayPictureApi = 'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1'
+export const proxyToolApi = homeApi + '/api/transferUrl'
 // 网易云音乐基础api
 export const netMusicBaseApi = 'https://api.imjad.cn/cloudmusic/'
 // 插件的随机图片地址
 export const randomPictureApi = 'https://infinity-api.infinitynewtab.com/random-wallpaper'
+// 手机的图片
+export const mobilePictureApi = homeApi + '/picture/api'

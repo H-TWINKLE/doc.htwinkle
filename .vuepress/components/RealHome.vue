@@ -2,7 +2,8 @@
     <Common :sidebarItems="sidebarItems" :showModule="recoShowModule">
         <div class="real-home">
             <div class="img-box" v-if="homeDayPic.url">
-                <img width="100%" :height="homeDayPic.height" class="img-info" :src="homeDayPic.url">
+                <img width="100%" :height="homeDayPic.height" class="img-info"
+                     :src="homeDayPic.url">
                 <div class="text"
                      :class="{ active: homeDayPic.copyright }"
                      :style="{ marginTop: homeDayPic.height/2 +'px' }">{{ homeDayPic.copyright }}
@@ -21,12 +22,12 @@ import Common from '@theme/components/Common'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 import { resolveSidebarItems } from '@theme/helpers/utils'
 import HttpKit from '../base/http/httpKit'
-import { dayPictureApi, randomPictureApi } from '../base/http/httpApi'
+import { mobilePictureApi, proxyToolApi } from '../base/http/httpApi'
 
 export default defineComponent({
     mixins: [moduleTransitonMixin],
     components: { Common, Footer },
-    setup(props, ctx) {
+    setup (props, ctx) {
         const instance = getCurrentInstance().proxy
         const homeDayPic = reactive({
             url: '',
@@ -34,34 +35,60 @@ export default defineComponent({
             height: 768
         })
 
-        const getDayPicture = async () => {
-            const resp = await HttpKit.get(dayPictureApi)
+        const getPictureOfDesk = async () => {
+            const resp = await HttpKit.get(proxyToolApi,
+                { url: 'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1' })
             if (resp && resp.status === 200 && resp.data && Array.isArray(resp.data.images)) {
-                homeDayPic.url = resp.data.images[0].url
+                homeDayPic.url = 'https://www.bing.com' + resp.data.images[0].url
                 setTimeout(() => {
                     homeDayPic.copyright = resp.data.images[0].copyright
                 }, 1000)
                 return
             }
-            /*if (await getDayPictureByApi()) {
-              return
-            }*/
             setTimeout(() => {
-                homeDayPic.url = 'http://doc.file.htwinkle.cn/2021/09/26/8dffb8404096206580b769856d9b2e0a.jpg'
+                homeDayPic.url = 'http://doc.file.htwinkle.cn/2021/09/26/f4e8bf7140b804858057d058f62140c6.jpg'
                 homeDayPic.copyright = '热爱可抵岁月漫长'
             }, 1000)
         }
 
-        const getDayPictureByApi = async () => {
-            const resp = await HttpKit.get(randomPictureApi)
-            if (resp && resp.status === 200 && resp.data && Array.isArray(resp.data.data)) {
-                homeDayPic.url = resp.data.data[0].src.bigSrc
-                return true
+        const getPictureOfMobile = async () => {
+            const resp = await HttpKit.get(mobilePictureApi,
+                { num: 1, plate: 1, type: 'fengjing' })
+            if (resp && resp.status === 200 && resp.data && Array.isArray(resp.data.list)) {
+                homeDayPic.url = resp.data.list[0].pictureUrl
+                setTimeout(() => {
+                    homeDayPic.copyright = resp.data.list[0].pictureName
+                }, 1000)
+                return
             }
+            setTimeout(() => {
+                homeDayPic.url = 'http://doc.file.htwinkle.cn/2021/09/26/91caf39540e13866802a3681e7c70c0f.jpg'
+                homeDayPic.copyright = '热爱可抵岁月漫长'
+            }, 1000)
+        }
+
+        const getClientWidth = () => {
+            return document.documentElement.clientWidth || document.body.clientWidth || 1024
+        }
+
+        const getClientHeight = () => {
+            return document.documentElement.clientHeight || document.body.clientHeight || 768
+        }
+
+        /**
+         * 获取图片
+         * @returns {Promise<void>}
+         */
+        const getDayPicture = async () => {
+            if (getClientWidth() > getClientHeight()) {
+                getPictureOfDesk()
+                return
+            }
+            getPictureOfMobile()
         }
 
         const getHeight = () => {
-            homeDayPic.height = document.documentElement.clientHeight || document.body.clientHeight || 768
+            homeDayPic.height = getClientHeight()
         }
 
         const sidebarItems = computed(() => {
@@ -90,29 +117,31 @@ export default defineComponent({
 <style src="../theme/styles/theme.styl" lang="stylus"></style>
 <style lang="less">
 .real-home {
-  width: 100%;
+    width: 100%;
 
-  .img-box {
-    opacity: .95;
-    transition: all 1s ease 0s;
-    -webkit-animation: all 1s ease 0s;
+    .img-box {
+        opacity: .95;
+        transition: all 1s ease 0s;
+        -webkit-animation: all 1s ease 0s;
 
-    .text {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      text-align: center;
-      z-index: 9999;
-      font-weight: bold;
-      opacity: 0;
-      background: rgba(24, 24, 24, 0.33);
-      color: #3eaf7c;
+        .text {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            text-align: center;
+            z-index: 9999;
+            font-weight: bold;
+            font-size: 1.05rem;
+            opacity: 0;
+            background: rgba(23, 22, 22, 0.58);
+            color: #3eaf7c;
+            padding: 10px 0;
+        }
+
+        .active {
+            opacity: 1;
+            transition: all 2s ease;
+        }
     }
-
-    .active {
-      opacity: 1;
-      transition: all 2s ease;
-    }
-  }
 }
 </style>
