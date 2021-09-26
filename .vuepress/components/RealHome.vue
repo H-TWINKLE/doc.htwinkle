@@ -1,73 +1,89 @@
 <template>
-  <Common :sidebarItems="sidebarItems" :showModule="recoShowModule">
-    <div class="real-home">
-      <div class="img-box" v-if="homeDayPic.url">
-        <img width="100%" :height="homeDayPic.height" class="img-info" :src="homeDayPic.url">
-        <div class="text"
-             :class="{ active: homeDayPic.copyright }"
-             :style="{ marginTop: homeDayPic.height/2 +'px' }">{{ homeDayPic.copyright }}
+    <Common :sidebarItems="sidebarItems" :showModule="recoShowModule">
+        <div class="real-home">
+            <div class="img-box" v-if="homeDayPic.url">
+                <img width="100%" :height="homeDayPic.height" class="img-info" :src="homeDayPic.url">
+                <div class="text"
+                     :class="{ active: homeDayPic.copyright }"
+                     :style="{ marginTop: homeDayPic.height/2 +'px' }">{{ homeDayPic.copyright }}
+                </div>
+            </div>
+            <el-skeleton :rows="25" animated v-else/>
         </div>
-      </div>
-      <el-skeleton :rows="25" animated v-else/>
-    </div>
-    <Footer class="footer"/>
-  </Common>
+        <Footer class="footer"/>
+    </Common>
 </template>
 
 <script>
-import { computed, defineComponent, getCurrentInstance, reactive, onMounted } from 'vue-demi'
+import { computed, defineComponent, getCurrentInstance, onMounted, reactive } from 'vue-demi'
 import Footer from '@theme/components/Footer'
 import Common from '@theme/components/Common'
 import moduleTransitonMixin from '@theme/mixins/moduleTransiton'
 import { resolveSidebarItems } from '@theme/helpers/utils'
-import httpKit from '../base/http/httpKit'
-import { dayPictureApi } from '../base/http/httpApi'
+import HttpKit from '../base/http/httpKit'
+import { dayPictureApi, randomPictureApi } from '../base/http/httpApi'
 
 export default defineComponent({
-  mixins: [moduleTransitonMixin],
-  components: { Common, Footer },
-  setup (props, ctx) {
-    const instance = getCurrentInstance().proxy
-    const homeDayPic = reactive({
-      url: '',
-      copyright: '',
-      height: 768
-    })
+    mixins: [moduleTransitonMixin],
+    components: { Common, Footer },
+    setup(props, ctx) {
+        const instance = getCurrentInstance().proxy
+        const homeDayPic = reactive({
+            url: '',
+            copyright: '',
+            height: 768
+        })
 
-    const getDayPicture = async () => {
-      const resp = await httpKit.get(dayPictureApi)
-      if (resp && resp.status === 200 && resp.data && resp.data.status === 1) {
-        homeDayPic.url = resp.data.bing.url
-        setTimeout(() => {
-          homeDayPic.copyright = resp.data.bing.copyright
-        }, 1000)
-      }
+        const getDayPicture = async () => {
+            const resp = await HttpKit.get(dayPictureApi)
+            if (resp && resp.status === 200 && resp.data && Array.isArray(resp.data.images)) {
+                homeDayPic.url = resp.data.images[0].url
+                setTimeout(() => {
+                    homeDayPic.copyright = resp.data.images[0].copyright
+                }, 1000)
+                return
+            }
+            /*if (await getDayPictureByApi()) {
+              return
+            }*/
+            setTimeout(() => {
+                homeDayPic.url = 'http://doc.file.htwinkle.cn/2021/09/26/8dffb8404096206580b769856d9b2e0a.jpg'
+                homeDayPic.copyright = '热爱可抵岁月漫长'
+            }, 1000)
+        }
+
+        const getDayPictureByApi = async () => {
+            const resp = await HttpKit.get(randomPictureApi)
+            if (resp && resp.status === 200 && resp.data && Array.isArray(resp.data.data)) {
+                homeDayPic.url = resp.data.data[0].src.bigSrc
+                return true
+            }
+        }
+
+        const getHeight = () => {
+            homeDayPic.height = document.documentElement.clientHeight || document.body.clientHeight || 768
+        }
+
+        const sidebarItems = computed(() => {
+            if (instance.$page) {
+                return resolveSidebarItems(
+                    instance.$page,
+                    instance.$page.regularPath,
+                    instance.$site,
+                    instance.$localePath
+                )
+            } else {
+                return []
+            }
+        })
+
+        onMounted(() => {
+            getHeight()
+            getDayPicture()
+        })
+
+        return { sidebarItems, homeDayPic }
     }
-
-    const getHeight = () => {
-      homeDayPic.height = document.documentElement.clientHeight || document.body.clientHeight || 768
-    }
-
-    const sidebarItems = computed(() => {
-      if (instance.$page) {
-        return resolveSidebarItems(
-            instance.$page,
-            instance.$page.regularPath,
-            instance.$site,
-            instance.$localePath
-        )
-      } else {
-        return []
-      }
-    })
-
-    onMounted(() => {
-      getHeight()
-      getDayPicture()
-    })
-
-    return { sidebarItems, homeDayPic }
-  }
 })
 </script>
 

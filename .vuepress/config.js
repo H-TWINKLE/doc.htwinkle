@@ -28,6 +28,13 @@ module.exports = {
                 "name": "viewport",
                 "content": "width=device-width,initial-scale=1,user-scalable=no"
             }
+        ],
+        [
+            "meta",
+            {
+                "name": "referer",
+                "content": "no-referrer"
+            }
         ]
     ],
     "theme": "reco",
@@ -38,13 +45,10 @@ module.exports = {
         "proxy": {
             '/target': {
                 // 此处的写法，目的是为了 将 /api 替换成 https://www.baidu.com/
-                target: 'https://www.baidu.com/',
+                target: 'https://www.bing.com/',
                 // 允许跨域
                 changeOrigin: true,
-                ws: true,
-                pathRewrite: {
-                    '^/api': ''
-                }
+                ws: true
             }
         }
     },

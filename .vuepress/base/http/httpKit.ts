@@ -54,7 +54,7 @@ class HttpKit {
             const postData = Object.assign({}, data)
             return await this.http.post(url, postData, config)
         } catch (e) {
-            console.log(e)
+            console.log('post error: ' + e)
         }
     }
 
@@ -69,8 +69,9 @@ class HttpKit {
             config.params = params
             return await this.http.get(url, config)
         } catch (e) {
-            console.log(e)
+            console.log('get error: ' + e)
         }
+        return ''
     }
 
 
