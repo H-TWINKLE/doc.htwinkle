@@ -1,6 +1,6 @@
 ---
 title: nginx 运行环境
-date: 2022-12-05
+date: 2022-11-05
 tags:
 
 - centos
@@ -19,6 +19,8 @@ categories:
 1. 下载命令
 
 ```shell
+mkdir -p /home/app/nginx
+cd /home/app/nginx
 wget http://nginx.org/download/nginx-1.23.2.tar.gz
 ```
 
@@ -37,7 +39,7 @@ cd nginx-1.23.2/
 3. 环境检测
 
 ```shell
-./configure
+./configure --with-stream
 ```
 
 如果没有出现./configure: error提示，表示当前环境可以安装nginx
@@ -119,4 +121,6 @@ ln -s /usr/local/nginx/sbin/nginx  /usr/local/bin
 ## 配置文件所在目录
 ```shell
 /usr/local/nginx/conf
+# 连接快捷方式
+ln -s /usr/local/nginx/conf  /home/app/nginx/conf
 ```

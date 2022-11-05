@@ -1,15 +1,43 @@
 ---
 title: docker 使用
-date: 2021-08-02
+date: 2022-11-05
 tags:
+
 - docker
 - centos
 - shell
-categories:
+  categories:
 - docker
 - linux
 - centos
+
 ---
+
+## docker的四种网络模式
+
+1. host模式: 容器和宿主机共享network，这时候localhost就可以访问宿主机端口了。
+
+```shell
+docker run -d --network host --name nginx
+```
+
+2. container模式: 容器A和容器B共享network，就是说容器之间可以通过localhost直接访问。
+
+```shell
+docker run -d --network container --name nginx
+```
+
+3. none模式: 容器与宿主机隔绝，不能联网，安全性最高，一般很少用到。
+
+```shell
+docker run -d --network none --name nginx
+```
+
+4. bridge模式(默认模式): 每个容器有自己的network，通过localhost访问不到宿主机
+
+```shell
+docker run -d --name nginx
+```
 
 ## 登录
 
