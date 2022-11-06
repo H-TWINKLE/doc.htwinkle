@@ -5,7 +5,8 @@
   "description": "热爱可抵岁月漫长",
   "scripts": {
     "dev": "vuepress dev . --open --host \"localhost\"",
-    "build": "vuepress build ."
+    "build": "vuepress build .",
+    "postinstall": "patch-package"
   },
   "devDependencies": {
     "@vuepress-reco/vuepress-plugin-comments": "^1.6.0",
