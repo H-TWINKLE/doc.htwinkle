@@ -20,14 +20,14 @@ jobs:
         run: ls
 
       - name: npm install yarn environment
-        run: npm install -g yarn
+        run: npm install -g cnpm
 
       - name: yarn install dependencies
-        run: yarn install
+        run: cnpm install
         
       - name: build package
         run: |
-          yarn run build
+          cnpm run build
           ls
           
       - name: delete server dir

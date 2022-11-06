@@ -60,12 +60,12 @@ module.exports = {
                 buttonText: "刷新"
             }
         }],
-/*        ["vuepress-plugin-nuggets-style-copy", {
+        ["vuepress-plugin-nuggets-style-copy", {
             copyText: "复制代码",
             tip: {
                 content: "复制成功!"
             }
-        }],*/
+        }],
         [
             //动态标题 先安装在配置， npm install vuepress-plugin-dynamic-title --save
             "dynamic-title",
@@ -100,6 +100,38 @@ module.exports = {
         ],
         ["vuepress-plugin-typescript"]
     ],
+    // configureWebpack: {
+    //     resolve: {
+    //         extensions: ['.ts', '.vue'],
+    //     },
+    //     module: {
+    //         rules: [
+    //             {
+    //                 test: /\.ts$/,
+    //                 loader: "ts-loader",
+    //                 options: { appendTsSuffixTo: [/\.vue$/] }
+    //             },
+    //             {
+    //                 test: /.less$/,
+    //                 loader: "style-loader!css-loader!less-loader"
+    //             }
+    //         ],
+    //     },
+    // },
+    /* "chainWebpack": (config, isServer) => {
+         config.resolve.extensions.add('.ts')
+         config.module
+             .rule('ts')
+             .test(/\.ts$/)
+             .use('ts-loader')
+             .loader(require.resolve('ts-loader'))
+             .options({
+                 appendTsSuffixTo: [/\.vue$/, /\.md$/], compilerOptions: {
+                     declaration: false,
+                 }
+             })
+             .end()
+     },*/
     "themeConfig": {
         "type": "blog",
         "blogConfig": {
