@@ -19,7 +19,7 @@ jobs:
       - name: show dir
         run: ls
 
-      - name: install enviroment
+      - name: install environment
         run: npm install
         
       - name: install webpack
@@ -39,7 +39,7 @@ jobs:
           pass: ${{ secrets.SERVER_PASS }}
           run: |
               echo 'delete old dir'
-              rm -rf /root/app_web/doc.htwinkle/public
+              rm -rf /home/app/doc.htwinkle/public
               
       - name: show server dir
         uses: matheusvanzan/sshpass-action@v2
@@ -50,7 +50,7 @@ jobs:
           pass: ${{ secrets.SERVER_PASS }}
           run: |
               echo 'change dir'
-              cd /root/app_web/doc.htwinkle
+              cd /home/app/doc.htwinkle
               ls
               
       - name: upload static to server
@@ -61,7 +61,7 @@ jobs:
           user: ${{ secrets.SERVER_USER }}
           pass: ${{ secrets.SERVER_PASS }}
           local: "./public*"
-          remote: "/root/app_web/doc.htwinkle/"
+          remote: "/home/app/doc.htwinkle/"
               
           
           
