@@ -22,15 +22,12 @@ jobs:
       - name: npm install yarn environment
         run: npm install -g yarn
 
-      - name: install webpack
-        run: npm install webpack@^4.5.0 -D
-
       - name: yarn install dependencies
-        run: yarn install
+        run: npm install
         
       - name: build package
         run: |
-          yarn run build
+          npm run build
           ls
           
       - name: delete server dir
