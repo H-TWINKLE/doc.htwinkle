@@ -19,15 +19,18 @@ jobs:
       - name: show dir
         run: ls
 
-      - name: install environment
-        run: npm install
-        
+      - name: npm install yarn environment
+        run: npm install -g yarn
+
       - name: install webpack
         run: npm install webpack@^4.5.0 -D
+
+      - name: yarn install dependencies
+        run: yarn install
         
       - name: build package
         run: |
-          npm run build
+          yarn run build
           ls
           
       - name: delete server dir
