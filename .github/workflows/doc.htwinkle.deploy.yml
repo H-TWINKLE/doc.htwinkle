@@ -23,11 +23,11 @@ jobs:
         run: npm install -g yarn
 
       - name: yarn install dependencies
-        run: npm install
+        run: yarn install
         
       - name: build package
         run: |
-          npm run build
+          yarn run build
           ls
           
       - name: delete server dir
