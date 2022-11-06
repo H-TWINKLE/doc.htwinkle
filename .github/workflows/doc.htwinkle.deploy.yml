@@ -19,18 +19,15 @@ jobs:
       - name: show dir
         run: ls
 
-      - name: install cnpm
-        run: npm install cnpm -g
-
       - name: install environment
-        run: cnpm install
+        run: npm install
         
       - name: install webpack
-        run: cnpm install webpack@^4.5.0 -D
+        run: npm install webpack@^4.5.0 -D
         
       - name: build package
         run: |
-          cnpm run build
+          npm run build
           ls
           
       - name: delete server dir
