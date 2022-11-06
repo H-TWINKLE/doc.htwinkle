@@ -6,7 +6,9 @@ tags:
 - docker
 - centos
 - shell
-  categories:
+
+categories:
+
 - docker
 - linux
 - centos
