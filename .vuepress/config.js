@@ -60,12 +60,12 @@ module.exports = {
                 buttonText: "刷新"
             }
         }],
-        ["vuepress-plugin-nuggets-style-copy", {
+/*        ["vuepress-plugin-nuggets-style-copy", {
             copyText: "复制代码",
             tip: {
                 content: "复制成功!"
             }
-        }],
+        }],*/
         [
             //动态标题 先安装在配置， npm install vuepress-plugin-dynamic-title --save
             "dynamic-title",
