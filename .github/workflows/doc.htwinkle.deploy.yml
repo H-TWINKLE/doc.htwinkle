@@ -20,7 +20,7 @@ jobs:
         run: ls
 
       - name: install cnpm
-        run: npm install cnpm
+        run: npm install cnpm -g
 
       - name: install environment
         run: cnpm install
