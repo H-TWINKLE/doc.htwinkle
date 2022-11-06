@@ -19,8 +19,11 @@ jobs:
       - name: show dir
         run: ls
 
-      - name: npm install yarn environment
-        run: npm install -g cnpm
+      - name: npm install vuepress-reco environment
+        run: npm install -g @vuepress-reco/theme-cli@1.0.7
+
+      - name: npm install vue environment
+        run: npm install -g @vue/cli@5.0.4
 
       - name: yarn install dependencies
         run: npm install
