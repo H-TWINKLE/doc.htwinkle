@@ -22,8 +22,8 @@ jobs:
       - name: install environment
         run: npm install
         
-      - name: install webpack
-        run: npm install webpack@^4.5.0 -D  
+#      - name: install webpack
+#        run: npm install webpack@^4.5.0 -D
         
       - name: build package
         run: |
