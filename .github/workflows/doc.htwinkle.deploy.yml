@@ -29,10 +29,16 @@ jobs:
         run: npm install
         
       - name: build package
+        continue-on-error: true
+        run: npm run build
+
+      - name: build package two
+        continue-on-error: true
         run: |
           npm run build
           ls
-          
+  
+
       - name: delete server dir
         uses: matheusvanzan/sshpass-action@v2
         with:
