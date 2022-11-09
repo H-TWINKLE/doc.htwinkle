@@ -3,7 +3,7 @@ name: doc.htwinkle - deploy
 on:
   push:
     branches: [ master ]
-    
+
   workflow_dispatch:
 
 jobs:
@@ -21,15 +21,15 @@ jobs:
 
       - name: install enviroment
         run: npm install
-        
+
       - name: install webpack
-        run: npm install webpack@^4.5.0 -D  
-        
+        run: npm install webpack@^4.5.0 -D
+
       - name: build package
         run: |
           npm run build
           ls
-          
+
       - name: delete server dir
         uses: matheusvanzan/sshpass-action@v2
         with:
@@ -38,9 +38,9 @@ jobs:
           user: ${{ secrets.SERVER_USER }}
           pass: ${{ secrets.SERVER_PASS }}
           run: |
-              echo 'delete old dir'
-              rm -rf /root/app_web/doc.htwinkle/public
-              
+            echo 'delete old dir'
+            rm -rf /home/app/doc.htwinkle/public
+
       - name: show server dir
         uses: matheusvanzan/sshpass-action@v2
         with:
@@ -49,10 +49,10 @@ jobs:
           user: ${{ secrets.SERVER_USER }}
           pass: ${{ secrets.SERVER_PASS }}
           run: |
-              echo 'change dir'
-              cd /root/app_web/doc.htwinkle
-              ls
-              
+            echo 'change dir'
+            cd /home/app/doc.htwinkle
+            ls
+
       - name: upload static to server
         uses: cross-the-world/scp-pipeline@master
         with:
@@ -61,7 +61,7 @@ jobs:
           user: ${{ secrets.SERVER_USER }}
           pass: ${{ secrets.SERVER_PASS }}
           local: "./public*"
-          remote: "/root/app_web/doc.htwinkle/"
+          remote: "/home/app/doc.htwinkle/"
               
           
           
