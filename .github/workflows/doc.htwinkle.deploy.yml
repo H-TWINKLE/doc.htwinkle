@@ -2,7 +2,7 @@ name: doc.htwinkle - deploy
 
 on:
   push:
-    branches: [ master ]
+    branches: [ develop/v1 ]
 
   workflow_dispatch:
 
