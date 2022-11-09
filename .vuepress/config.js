@@ -100,38 +100,6 @@ module.exports = {
         ],
         ["vuepress-plugin-typescript"]
     ],
-    // configureWebpack: {
-    //     resolve: {
-    //         extensions: ['.ts', '.vue'],
-    //     },
-    //     module: {
-    //         rules: [
-    //             {
-    //                 test: /\.ts$/,
-    //                 loader: "ts-loader",
-    //                 options: { appendTsSuffixTo: [/\.vue$/] }
-    //             },
-    //             {
-    //                 test: /.less$/,
-    //                 loader: "style-loader!css-loader!less-loader"
-    //             }
-    //         ],
-    //     },
-    // },
-    /* "chainWebpack": (config, isServer) => {
-         config.resolve.extensions.add('.ts')
-         config.module
-             .rule('ts')
-             .test(/\.ts$/)
-             .use('ts-loader')
-             .loader(require.resolve('ts-loader'))
-             .options({
-                 appendTsSuffixTo: [/\.vue$/, /\.md$/], compilerOptions: {
-                     declaration: false,
-                 }
-             })
-             .end()
-     },*/
     "themeConfig": {
         "type": "blog",
         "blogConfig": {
@@ -161,6 +129,7 @@ module.exports = {
             "placeholder": "聊点什么...",
             "avatar": "wavatar"
         },
+        /* 顶部的导航菜单 */
         "nav": [
             {
                 "text": "主页",
@@ -255,9 +224,11 @@ module.exports = {
                 "link": "https://github.com/h-twinkle"
             }
         ],
+        /* 侧边栏信息 */
         "sidebar": {
             "/docs/centos/": [
                 "",
+                "centos7.6",
                 "app",
                 "swap",
                 "firewall",

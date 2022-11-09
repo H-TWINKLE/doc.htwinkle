@@ -1,35 +1,45 @@
 ---
-title: nginx 运行环境 
-date: 2020-05-29
+title: nginx 运行环境
+date: 2022-11-05
 tags:
+
 - centos
 - nginx
 - shell
 categories:
 - centos
 - linux
+
 ---
 
-####       
+####          
 
 ## 安装步骤
 
 1. 下载命令
 
 ```shell
-wget http://nginx.org/download/nginx-1.17.5.tar.gz
+mkdir -p /home/app/nginx
+cd /home/app/nginx
+wget http://nginx.org/download/nginx-1.23.2.tar.gz
 ```
 
 2. 解压文件
 
 ```shell
-tar -zxvf nginx-1.17.5.tar.gz  
+tar -zxvf nginx-1.23.2.tar.gz
+```
+
+3. 进入目录
+
+```shell
+cd nginx-1.23.2/
 ```
 
 3. 环境检测
 
 ```shell
-./configure
+./configure --with-stream
 ```
 
 如果没有出现./configure: error提示，表示当前环境可以安装nginx
@@ -37,8 +47,7 @@ tar -zxvf nginx-1.17.5.tar.gz
 4. 编译安装
 
 ```shell
-make
-make install
+make && make install
 ```
 
 5. 配置nginx开机启动
@@ -94,4 +103,24 @@ systemctl stop nginx.service
 
 ```shell
 systemctl restart nginx.service 
+```
+
+## 链接nginx环境变量
+
+```shell
+# 默认的地址
+/usr/local/nginx/sbin/nginx -s reload
+# 方案1 环境变量
+vim /etc/profile
+PATH=$PATH: /usr/local/nginx/sbin  //这个是你nginx的位置
+export PATH
+# 方案2 使用软连接来连接
+ln -s /usr/local/nginx/sbin/nginx  /usr/local/bin
+```
+
+## 配置文件所在目录
+```shell
+/usr/local/nginx/conf
+# 连接快捷方式
+ln -s /usr/local/nginx/conf  /home/app/nginx/conf
 ```
