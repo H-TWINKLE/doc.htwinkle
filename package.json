@@ -4,8 +4,8 @@
   "author": "TWINKLE",
   "description": "热爱可抵岁月漫长",
   "scripts": {
-    "dev": "vuepress dev . --open --host \"localhost\"",
-    "build": "vuepress build .",
+    "dev": "vuepress dev page --open --host \"localhost\"",
+    "build": "vuepress build page",
     "postinstall": "patch-package"
   },
   "devDependencies": {
@@ -30,6 +30,7 @@
     "dayjs": "^1.10.6",
     "element-ui": "^2.15.3",
     "hydrogen-js-sdk": "git+https://github.com/H-TWINKLE/hydrogen-js-sdk.git",
+    "md5": "^2.3.0",
     "vue-aplayer": "^1.6.1",
     "vue-awesome": "^4.3.1",
     "vue-video-player": "^5.0.2",

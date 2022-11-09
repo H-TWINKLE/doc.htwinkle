@@ -23,7 +23,7 @@
     ]
   },
   "include": [
-    ".vuepress/**/*.ts"
+    "page/.vuepress/**/*.ts"
   ],
   "exclude": [
     "node_modules"

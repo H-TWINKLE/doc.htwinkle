@@ -101,6 +101,8 @@ module.exports = {
         ["vuepress-plugin-typescript"]
     ],
     "themeConfig": {
+        "noFoundPageByTencent": false,
+        "subSidebar": 'auto',
         "type": "blog",
         "blogConfig": {
             "category": {
@@ -142,7 +144,7 @@ module.exports = {
                 "icon": "fa fa-map-signs"
             },
             {
-                "text": "生活",
+                "text": "松花酿酒",
                 "icon": "fa fa-envira",
                 "items": [
                     {
@@ -168,7 +170,7 @@ module.exports = {
                 ]
             },
             {
-                "text": "学习",
+                "text": "藏书万卷",
                 "icon": "fa fa-code",
                 "items": [
                     {
@@ -176,41 +178,17 @@ module.exports = {
                         "link": "/docs/centos/"
                     },
                     {
-                        "text": "nginx",
-                        "link": "/docs/nginx/"
-                    },
-                    {
-                        "text": "php",
-                        "link": "/docs/php/"
-                    },
-                    {
-                        "text": "python",
-                        "link": "/docs/python/"
-                    },
-                    {
-                        "text": "docker",
-                        "link": "/docs/docker/"
-                    },
-                    {
-                        "text": "windows",
-                        "link": "/docs/windows/"
-                    },
-                    {
-                        "text": "git",
-                        "link": "/docs/git/"
-                    },
-                    {
-                        "text": "vuepress-reco",
-                        "link": "/docs/vuepress-reco/"
+                        "text": "学而时习之~",
+                        "link": "/docs/learn/"
                     },
                     {
                         "text": "美工设计",
                         "link": "/docs/art/"
                     },
                     {
-                        "text": "实用工具&网站",
+                        "text": "实用拓展",
                         "link": "/docs/tool/"
-                    },
+                    }
                 ]
             },
             {
@@ -240,11 +218,26 @@ module.exports = {
                 "python",
                 "redis"
             ],
+            "/docs/learn/": [
+                "",
+                "docker",
+                "git",
+                "nginx",
+                "node-js",
+                "php",
+                "python",
+                "windows"
+            ],
             "/docs/art/": [
                 "",
                 "ae",
                 "pic",
                 "api"
+            ],
+            "/docs/tool/": [
+                "",
+                "encode",
+                "vuepress-reco"
             ]
         }
     }

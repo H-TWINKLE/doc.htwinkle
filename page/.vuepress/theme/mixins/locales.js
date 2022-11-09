@@ -1,4 +1,4 @@
-import { zhHans, zhHant, en, ja, ko, es } from '../locales/index'
+import { zhHans, zhHant, en, ja, ko, es } from '../locales'
 
 export default {
   computed: {
