@@ -1,6 +1,6 @@
 ---
 title: centos 7.6
-date: 2022-11-05
+date: 2022-11-10
 tags:
 
 - centos
@@ -59,10 +59,14 @@ docker pull majiajue/jdk1.8
 # jar目录
 mkdir -p /home/app/htwinkle.cn.web/
 # 运行容器
-docker run -p 9011:9011 --name jdk1.8 \
+# 后台运行
+docker run -p 9011:9011 --name htwinkle.cn.web \
 --network host \
 -v /home/app/htwinkle.cn.web/:/home \
--d -it majiajue/jdk1.8
+-w /home/web \
+-itd majiajue/jdk1.8 \
+/bin/bash ./runServer.sh start
+# 前台运行可进入容器
 # 进入容器，运行相关项目
 docker exec -it jdk1.8 /bin/bash
 # 执行指令
