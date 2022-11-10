@@ -226,6 +226,7 @@ module.exports = {
             ],
             "/docs/learn/": [
                 "",
+                "busy-box",
                 "docker",
                 "git",
                 "nginx",
