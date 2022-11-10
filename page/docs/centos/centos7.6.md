@@ -16,7 +16,7 @@ categories:
 最新重新白嫖了一台服务器，重新开始装机之旅~
 现在一切已docker为容器注入需要的服务，所以第一要务就是docker~
 
-## centos使用docker镜像
+## centos 使用 docker 镜像
 
 帮助来源 https://www.runoob.com/docker/centos-docker-install.html
 
@@ -32,11 +32,11 @@ yum remove docker-ce
 1. 按照之前的规划，使用容器加载nginx然后代理给所有的服务使用，
 2. 后来发现应该在外部安装nginx，其他服务使用nginx做统一转发，即减少各容器依赖nginx，又可以独立使用nginx，一举多得
 
-## centos安装 nginx
+## centos 安装 nginx
 
-见 nginx.md
+[nginx安装和使用](nginx.html)
 
-## docker安装 MySQL5.7
+## docker 安装 MySQL5.7
 ```shell
 # 创建需要挂载的目录（自定义，这里只是举例，不一定要按照例子来）
 mkdir -p /home/app/docker/mysql5.7/{conf,data,log}
@@ -53,7 +53,7 @@ docker run -p 3306:3306 --name mysql5.7 \
 docker exec -it mysql5.7 /bin/bash
 ```
 
-## docker安装 java1.8
+## docker 安装 java1.8
 ```shell
 docker pull majiajue/jdk1.8
 # jar目录
@@ -74,7 +74,7 @@ docker exec -it jdk1.8 /bin/bash
 cd /home/web/ && chmod +755 runServer.sh && ./runServer.sh start
 ```
 
-### docker安装nginx
+### docker 安装 nginx
 
 ```shell
 # 拉取镜像
