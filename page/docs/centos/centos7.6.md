@@ -59,7 +59,7 @@ docker pull majiajue/jdk1.8
 # jar目录
 mkdir -p /home/app/htwinkle.cn.web/
 # 运行容器
-# 后台运行
+# 后台运行：需要java的指令前台运行
 docker run -p 9011:9011 --name htwinkle.cn.web \
 --network host \
 -v /home/app/htwinkle.cn.web/:/home \
@@ -70,6 +70,7 @@ docker run -p 9011:9011 --name htwinkle.cn.web \
 # 进入容器，运行相关项目
 docker exec -it jdk1.8 /bin/bash
 # 执行指令
+# 容器内部执行指令
 cd /home/web/ && chmod +755 runServer.sh && ./runServer.sh start
 ```
 
