@@ -166,8 +166,12 @@ module.exports = {
                         "link": "/life/video/"
                     },
                     {
-                        "text": "我们",
+                        "text": "🌸🍀",
                         "link": "/life/we/"
+                    },
+                    {
+                        "text": "恰若青石的街道向晚",
+                        "link": "/life/tree-hole/"
                     }
                 ]
             },
