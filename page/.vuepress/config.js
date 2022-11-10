@@ -129,7 +129,9 @@ module.exports = {
             "appId": '1nPYYBBDSthaoM6ir07KS4uQ-gzGzoHsz',
             "appKey": 'cFrHHkReCrincGrAaM5IHvD5',
             "placeholder": "聊点什么...",
-            "avatar": "wavatar"
+            "avatar": "wavatar",
+            "recordIP": true,
+            "notify": true
         },
         /* 顶部的导航菜单 */
         "nav": [
