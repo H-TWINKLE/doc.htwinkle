@@ -79,6 +79,27 @@ busybox crond
 echo "cp cron config file to /var/spool/cron/crontabs"
 ```
 
+一键使用的脚本
+
+```shell
+echo "#!/bin/sh" >> /userconfig/S50cron
+echo "mkdir -p /var/spool/cron/crontabs" >> /userconfig/S50cron
+echo "echo '0 4 * * * reboot' > /var/spool/cron/crontabs/root" >> /userconfig/S50cron
+echo "chmod 777 /var/spool/cron/crontabs/root" >> /userconfig/S50cron
+echo "busybox crond" >> /userconfig/S50cron
+chmod 755 /userconfig/S50cron
+```
+```shell
+/init
+/etc/bashrc
+cp /userconfig/S50cron /etc/default/
+/etc/default/S01userconfig
+/etc/default/rcS
+
+/etc/init.d/dbus-rcS
+/etc/init.d/rcS
+```
+
 3.重启
 
 ```shell
