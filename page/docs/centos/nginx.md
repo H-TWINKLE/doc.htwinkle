@@ -1,6 +1,6 @@
 ---
 title: nginx 运行环境
-date: 2022-11-05
+date: 2022-12-25
 tags:
 
 - centos
