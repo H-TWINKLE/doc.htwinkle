@@ -6,13 +6,13 @@ tags:
 - centos
 - nginx
 - shell
+
 categories:
+
 - centos
 - linux
 
 ---
-
-####          
 
 ## 安装步骤
 
@@ -119,8 +119,20 @@ ln -s /usr/local/nginx/sbin/nginx  /usr/local/bin
 ```
 
 ## 配置文件所在目录
+
 ```shell
 /usr/local/nginx/conf
 # 连接快捷方式
 ln -s /usr/local/nginx/conf  /home/app/nginx/conf
+```
+
+## 配置中保留远程地址的真实ip
+
+```shell
+#保留代理之前的host 包含客户端真实的域名和端口号
+proxy_set_header    Host  $host; 
+#保留代理之前的真实客户端ip
+proxy_set_header    X-Real-IP  $remote_addr;  
+#这个Header和X-Real-IP类似，但它在多级代理时会包含真实客户端及中间每个代理服务器的IP
+proxy_set_header    X-Forwarded-For  $proxy_add_x_forwarded_for;
 ```
