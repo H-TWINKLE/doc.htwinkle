@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "async-validator": "^3.5.2",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "dayjs": "^1.10.6",
     "element-ui": "^2.15.3",
     "hydrogen-js-sdk": "git+https://github.com/H-TWINKLE/hydrogen-js-sdk.git",

@@ -7,7 +7,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component } from 'vue-property-decorator'
+import Vue from 'vue'
 
 @Component({
     name: 'Md5Page'
@@ -34,6 +35,7 @@ export default class extends Vue {
         font-weight: bold;
         cursor: pointer;
     }
+
     .content {
         font-size: 1.2rem;
         font-weight: bold;
