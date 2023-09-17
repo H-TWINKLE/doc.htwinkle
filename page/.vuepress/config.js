@@ -1,3 +1,7 @@
+const { sidebarItem } = require("./config_module/sidebarItem");
+const { navItem } = require("./config_module/navItem");
+const { headerItem } = require("./config_module/headerItem");
+
 module.exports = {
     "title": "TWINKLE",
     "description": "热爱可抵岁月漫长",
@@ -7,36 +11,6 @@ module.exports = {
         }
     },
     "dest": "public",
-    "head": [
-        [
-            "link",
-            {
-                "rel": "icon",
-                "href": "http://doc.file.htwinkle.cn/2021/07/25/8cc55192402359488043e679d57b07b9.ico"
-            }
-        ],
-        [
-            "link",
-            {
-                "rel": "stylesheet",
-                "href": "//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-            }
-        ],
-        [
-            "meta",
-            {
-                "name": "viewport",
-                "content": "width=device-width,initial-scale=1,user-scalable=no"
-            }
-        ],
-        [
-            "meta",
-            {
-                "name": "referer",
-                "content": "no-referrer"
-            }
-        ]
-    ],
     "theme": "reco",
     "markdown": {
         "lineNumbers": true
@@ -133,119 +107,10 @@ module.exports = {
             "recordIP": true,
             "notify": true
         },
+        "head": headerItem,
         /* 顶部的导航菜单 */
-        "nav": [
-            {
-                "text": "主页",
-                "link": "/",
-                "icon": "fa fa-home"
-            },
-            {
-                "text": "归档",
-                "link": "/timeline/",
-                "icon": "fa fa-map-signs"
-            },
-            {
-                "text": "松花酿酒",
-                "icon": "fa fa-envira",
-                "items": [
-                    {
-                        "text": "每日一文",
-                        "link": "/life/article/"
-                    },
-                    {
-                        "text": "每日一曲",
-                        "link": "/life/music/"
-                    },
-                    {
-                        "text": "每日一图",
-                        "link": "/life/picture/"
-                    },
-                    {
-                        "text": "每日一视",
-                        "link": "/life/video/"
-                    },
-                    {
-                        "text": "🌸🍀",
-                        "link": "/life/we/"
-                    },
-                    {
-                        "text": "恰若青石的街道向晚",
-                        "link": "/life/tree-hole/"
-                    }
-                ]
-            },
-            {
-                "text": "藏书万卷",
-                "icon": "fa fa-code",
-                "items": [
-                    {
-                        "text": "centos",
-                        "link": "/docs/centos/"
-                    },
-                    {
-                        "text": "学而时习之~",
-                        "link": "/docs/learn/"
-                    },
-                    {
-                        "text": "美工设计",
-                        "link": "/docs/art/"
-                    },
-                    {
-                        "text": "实用拓展",
-                        "link": "/docs/tool/"
-                    }
-                ]
-            },
-            {
-                "text": "关于我",
-                "icon": "fa fa-grav",
-                "link": "/about/about/"
-            },
-            {
-                "text": "github",
-                "icon": "fa fa-github",
-                "link": "https://github.com/h-twinkle"
-            }
-        ],
+        "nav": navItem,
         /* 侧边栏信息 */
-        "sidebar": {
-            "/docs/centos/": [
-                "",
-                "centos7.6",
-                "app",
-                "swap",
-                "firewall",
-                "shell",
-                "ftp",
-                "java",
-                "mysql",
-                "nginx",
-                "python",
-                "redis"
-            ],
-            "/docs/learn/": [
-                "",
-                "busy-box",
-                "docker",
-                "git",
-                "nginx",
-                "node-js",
-                "php",
-                "python",
-                "windows"
-            ],
-            "/docs/art/": [
-                "",
-                "ae",
-                "pic",
-                "api"
-            ],
-            "/docs/tool/": [
-                "",
-                "encode",
-                "vuepress-reco"
-            ]
-        }
+        "sidebar": sidebarItem
     }
 }
