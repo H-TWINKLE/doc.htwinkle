@@ -1,0 +1,42 @@
+version: '3'
+
+networks:
+  rustdesk-net:
+    external: false
+
+services:
+  hbbs:
+    container_name: hbbs
+    ports:
+      - "21115:21115"
+      - "21116:21116" # 自定义 hbbs 映射端口
+      - "21116:21116/udp" # 自定义 hbbs 映射端口
+    image: rustdesk/rustdesk-server
+    command: hbbs -r hbbs.htwinkle.cn:21117 # 填入个人域名或 IP + hbbr 暴露端口
+    volumes:
+      - "/opt/rustdesk/hbbs:/root" # 自定义挂载目录
+    networks:
+      - rustdesk-net
+    depends_on:
+      - hbbr
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+
+  hbbr:
+    container_name: hbbr
+    ports:
+      - "21117:21117" # 自定义 hbbr 映射端口
+    image: rustdesk/rustdesk-server
+    command: hbbr
+    volumes:
+      - "/opt/rustdesk/hbbr:/root" # 自定义挂载目录
+    networks:
+      - rustdesk-net
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 64M
